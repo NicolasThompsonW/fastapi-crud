@@ -16,7 +16,7 @@ load_dotenv()
 user = APIRouter()
 key = Fernet.generate_key()
 f = Fernet(key)
-
+""" 
 # Obtener todos los usuarios
 @user.get("/users", response_model=list[User], tags=["users"])
 async def get_users():
@@ -60,7 +60,7 @@ async def put_user(id: int, user: User):
         .where(Users.c.id == id)
     )
 
-    return dict(id=id, user=user.name, email=user.email, password=password)
+    return dict(id=id, user=user.name, email=user.email, password=password) """
 
 
 # ----------------- Con POO ------------------------------------#
