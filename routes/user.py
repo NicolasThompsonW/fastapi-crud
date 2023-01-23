@@ -18,7 +18,7 @@ key = Fernet.generate_key()
 f = Fernet(key)
 
 # Obtener usuarios
-@user.get("/users", response_model=list[User], tags=["users"])
+@user.get("/users")
 async def get_users2():
     # Crea una nueva sesión de SQLAlchemy
     session = Session(bind=engine)
@@ -31,7 +31,7 @@ async def get_users2():
 
 
 # Crear usuario
-@user.post("/users", response_model=User, tags=["users"])
+@user.post("/users")
 async def creando2(user: User):
     # Crea una sesión usando sessionmaker y el engine
     Session = sessionmaker(bind=engine)
@@ -52,7 +52,7 @@ async def creando2(user: User):
 
 
 # Obtener un usuario
-@user.get("/users/{id}", response_model=User, tags=["users"])
+@user.get("/users/{id}")
 async def obteniendo_un_usuario(id):
     session = Session(bind=engine)
     resultado = session.query(Users2).get(id)
@@ -60,7 +60,7 @@ async def obteniendo_un_usuario(id):
 
 
 # Eliminar usuario
-@user.delete("/users/{id}", response_model=str, tags=["users"])
+@user.delete("/users/{id}")
 async def eliminar_usuario(id: int):
     session = Session(bind=engine)
     resultado = session.query(Users2).filter(Users2.id == id).delete()
